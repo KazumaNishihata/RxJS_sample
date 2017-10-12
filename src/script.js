@@ -99,6 +99,12 @@ switch (target) {
   }
   break;
   
+  case 'startWith'://ストリームの最初に追加
+  {
+    Rx.Observable.of(1,2,3).startWith(0)
+        .subscribe(v => console.log(v));
+  }
+  break;
 
   case 'subscribe':
     Rx.Observable
