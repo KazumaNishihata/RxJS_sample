@@ -89,6 +89,16 @@ switch (target) {
   }
   break;
   
+  case 'race'://１番早いやつを表示
+  {
+    Rx.Observable.race(
+      Rx.Observable.of('b').delay(800),
+      Rx.Observable.of('b').delay(500),
+      Rx.Observable.of('c').delay(600)
+    ).subscribe(v => console.log(v));
+  }
+  break;
+  
 
   case 'subscribe':
     Rx.Observable
