@@ -81,6 +81,15 @@ switch (target) {
   }
   break;
 
+  case 'pairwise'://前の値と今の値を配列で送る
+  {
+    Rx.Observable.from([1,2,3])
+      .pairwise()
+      .subscribe(v => console.log(v));
+  }
+  break;
+  
+
   case 'subscribe':
     Rx.Observable
       .of(1)
