@@ -106,6 +106,15 @@ switch (target) {
   }
   break;
 
+  case 'withLatestFrom'://ストリームの最後を追加
+  {
+    Rx.Observable.of(1,2,3)
+        .withLatestFrom(Rx.Observable.of('a','b','c'))
+        .subscribe(v => console.log(v));
+  }
+  break;
+  
+
   case 'subscribe':
     Rx.Observable
       .of(1)
