@@ -124,6 +124,29 @@ switch (target) {
   }
   break;
 
+  case 'defaultIfEmpty': // まだ値が流れいていない場合に流す値を指定できる
+  {
+    Rx.Observable.of()
+      .defaultIfEmpty(1)
+      .subscribe(val => console.log(val));
+
+    Rx.Observable.empty()
+      .defaultIfEmpty('a')
+      .subscribe(val => console.log(val));
+  }
+  break;
+
+  case 'every':
+  {
+    Rx.Observable.of(1,2,3,4,5)
+      .every(val => val < 6)
+      .subscribe(v => console.log(v)); //true
+    Rx.Observable.of(1,2,3,4,5)
+      .every(val => val > 6)
+      .subscribe(v => console.log(v)); //false
+    }
+  break;
+
   case 'subscribe':
     Rx.Observable
       .of(1)
