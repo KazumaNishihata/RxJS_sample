@@ -114,6 +114,15 @@ switch (target) {
   }
   break;
   
+  case 'zip'://ストリームをまとめて配列で返す
+  {
+    Rx.Observable.zip(
+      Rx.Observable.of('a').delay(800),
+      Rx.Observable.of('b').delay(500),
+      Rx.Observable.of('c').delay(600)
+    ).subscribe(v => console.log(v));
+  }
+  break;
 
   case 'subscribe':
     Rx.Observable
