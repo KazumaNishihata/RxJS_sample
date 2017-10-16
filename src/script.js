@@ -147,6 +147,23 @@ switch (target) {
     }
   break;
 
+  case 'create':
+  {
+    const obserbable = Rx.Observable.create( observer => {
+      console.log(2)
+      setTimeout( () => {
+        observer.next(4)
+      },1000)
+      setTimeout( () => {
+        observer.next(5)
+      },2000)
+    });
+    console.log(1)
+    obserbable.subscribe(val => console.log(val));
+    console.log(3)
+  }
+  break;
+
   case 'subscribe':
     Rx.Observable
       .of(1)
