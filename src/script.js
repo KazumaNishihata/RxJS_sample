@@ -164,6 +164,22 @@ switch (target) {
   }
   break;
 
+  case 'empty':
+  {
+    Rx.Observable.empty().subscribe(
+      val => console.log('success',val),
+      val => console.log('error',val),
+      () => console.log('complate')
+    ) // complate
+
+    Rx.Observable.empty().defaultIfEmpty('value').subscribe(
+      val => console.log('success',val),
+      val => console.log('error',val),
+      () => console.log('complate')
+    ) // success value + complate
+  }
+  break;
+  
   case 'subscribe':
     Rx.Observable
       .of(1)
