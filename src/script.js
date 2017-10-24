@@ -180,39 +180,93 @@ switch (target) {
   }
   break;
   
-  case 'subscribe':
-    Rx.Observable
-      .of(1)
-      .subscribe( v => console.log(v));
-      break;
-  
-  case 'of':
-    Rx.Observable
-      .of(1)
-      .subscribe( v => console.log(1,v));
-    Rx.Observable
-      .of(1,2,3)
-      .subscribe( v => console.log(2,v));
-      break;
-
   case 'from':
+  {
     Rx.Observable
       .from([2,3,4])
       .subscribe( v => console.log(1,v));
     Rx.Observable
       .from('abcd')
       .subscribe( v => console.log(2,v));
-      break;
+  }
+  break;
 
   case 'fromEvent':
+  {
     const button = document.querySelector('button');
     Rx.Observable
       .fromEvent(button, 'click')
       .subscribe( () => console.log('clicked!!'));
-      break;
+  }
+  break;
+  
+  case 'fromPromise':
+  {
+    const myPromise =  new Promise((resolve, reject) => {
+        setTimeout( () =>{
+          resolve('Resolved!');
+        }, 1000)
+    })
+    Rx.Observable.fromPromise(myPromise)
+      .subscribe(
+        v => console.log(1,'success',v), // fire
+        v => console.log(1,'error',v)
+      );
+    const myPromise2 =  new Promise((resolve, reject) => {
+        setTimeout( () =>{
+          reject('Reject!');
+        }, 2000)
+    })
+    Rx.Observable.fromPromise(myPromise2)
+    .subscribe(
+      v => console.log(2,'success',v),
+      v => console.log(2,'error',v) // fire
+    );
+  }
+  break;
+
+  
+  case 'of':
+  {
+    Rx.Observable
+      .of(1)
+      .subscribe( v => console.log(1,v));
+    Rx.Observable
+      .of(1,2,3)
+      .subscribe( v => console.log(2,v));
+   }
+   break;
+  
+  case 'multicast':
+  {
     
-  default:
-    break;
+
+  }
+  break;
+  
+  case 'publish':
+  {
+    const publish$ = Rx.Observable.interval(1000).publish();
+
+    publish$.subscribe(v => console.log('a',v));
+    publish$.subscribe(v => console.log('b',v));
+    setTimeout(function () {
+      publish$.connect();
+      publish$.subscribe(v => console.log('c',v));
+    },4000);
+
+  }
+  break;
+
+  case 'subscribe':
+  {
+    Rx.Observable
+      .of(1)
+      .subscribe( v => console.log(v));
+  }
+  break;
+    default:
+  break;
 }
 /* sample1 */
 
