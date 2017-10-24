@@ -225,6 +225,14 @@ switch (target) {
   }
   break;
 
+  case 'interval':
+  {
+    Rx.Observable.interval(1000).subscribe(v => console.log(v));// 0 1 2 3 4...
+  }
+  break;
+
+
+
   
   case 'of':
   {
